@@ -54,14 +54,12 @@ CPS 对 PD780 的**完整读频 ≤20 秒**跑通:「读频成功！」→ 数�
 - `toolset-glue/` —— WDK 26100 的 MSBuild toolset 粘合层手写文件
   - WDK 26100 安装器不再给 VS2022 安装 `WindowsKernelModeDriver10.0` toolset,这 4 个文件手工补全
   - 安装到 `BuildTools\MSBuild\Microsoft\VC\v170\Platforms\<Arch>\` 对应位置
-- `usbser-com/` —— 早期 usbser COM 口方案(存档;CPS 不识别 COM 口,已被 kmdf-driver 取代)
 - `protocol/` —— 写频协议文档(基于实测会话整理:帧格式/校验/读频流程/写参数)
   - `HP780写频协议规范.md` 为正式整理稿;`hytera-protocol.json` = 参考会话帧记录
-- `tools/` —— 直连工具(macOS libusb / Windows WinUSB / COM 串口三种后端;定位:读频备份/协议验证,非码板编辑器)
-- `vm-scripts/` —— 部署与 VM 内运行脚本
-  - 驱动部署/签名(`deploy.cmd` 等)、自然使用 watcher(`cps-read-fix.ps1`,配登录任务)、
-    端到端读频测试 payload(`p68.ps1`,干净无调试工具 + 环 dump + 自动点确定)
-- `evidence/` —— 按日期的验收存档(截图/驱动环日志/运行日志/结论 README)
+- `tools/` —— 直连读取工具(macOS libusb `hp780_tool.py` / Windows WinUSB `hp780_winusb.py`;定位:读频备份/协议验证,非码板编辑器)
+- `vm-scripts/` —— 部署与签名脚本(驱动安装、本地测试证书生成/签名)+ 自然使用 watcher
+  (`cps-read-fix.ps1`,配登录任务实现零手动干预)
+- `evidence/` —— 按日期的验收存档(截图/驱动环日志/运行日志/测试 payload/结论 README)
 
 ## 构建
 
