@@ -1,6 +1,27 @@
-# Hytera ARM64 驱动项目
+# Hytera ARM64 驱动项目（海能达对讲机写频线）
 
-海能达(Hytera)设备在 ARM64 Windows 上使用的驱动与工具集合。当前核心目标:让 HP780 写频线(VID_238B&PID_0A11)在 Parallels 的 ARM64 Windows 11 虚拟机中配合 CPS 使用。
+**让海能达(Hytera)对讲机/手台/终端在 ARM64 Windows 上可读可写**:官方 CPS(客户端编程软件)
+只有 x86/x64 的写频线驱动,在 Apple Silicon Mac 的 Windows 虚拟机(Parallels Desktop 等)和
+Windows on ARM 设备上装不起来。本项目提供 ARM64 原生 KMDF 驱动与直连工具,给出两条路径:
+
+| 路径 | 说明 |
+|---|---|
+| 官方 CPS(推荐) | 在 ARM64 Windows(虚拟机或原生)里安装本驱动包,官方 CPS 即可识别写频线并**读写海能达对讲机**。已实测 **PD780 完整读频**:「读频成功」→ 数据树完整加载 → 码板保存,全程 **≤20 秒** |
+| macOS 直连(无需 Windows) | `tools/hp780_tool.py` 经 libusb 从 macOS **直接读取电台**(已实测 PD780,读回 ~95KB 镜像),并可写参数 |
+
+**适用设备**:使用海能达 USB 写频线(**VID_238B & PID_0A11**,即 HP780 写频线)的 DMR 对讲机与终端
+(手台 / 车台 / 终端)。已在 **PD780** 上完整实测;同一写频线、同一协议族的其它机型按相同方式使用,
+欢迎在 Issues 里反馈你的机型与结果。
+
+**典型场景**:Apple Silicon Mac(M1/M2/M3/M4)用户想在自己的 Mac 上读海能达对讲机——
+开一个 ARM64 Windows 虚拟机配合官方 CPS,或用 macOS 直连工具直接读。
+
+**English**: ARM64 Windows driver + tools for the Hytera USB programming cable
+(VID_238B&PID_0A11). Lets the official Hytera CPS read/program Hytera DMR radios
+(handhelds & terminals) on Windows on ARM — including Parallels/VMware virtual machines
+on Apple Silicon Macs — plus a macOS direct-connect tool (libusb) to read the radio
+without Windows. Verified end-to-end with PD780. Independent interoperability project;
+no Hytera or MCCI code or binaries included (see disclaimer below).
 
 ## 当前状态 (2026-09-13) —— ★PD780 读频全通 + 调速收官★
 
