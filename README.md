@@ -12,10 +12,9 @@ x86/x64 版,在 ARM64 Windows 上装不了）,CPS 里自然也**识别不到写�
 让**官方 CPS 在 ARM64 Windows 虚拟机（以及任何 Windows on ARM 设备）里正常工作,
 读取和写入海能达对讲机**。
 
-| 路径 | 说明 |
-|---|---|
-| **官方 CPS（主线,推荐）** | 在 ARM64 虚拟机里安装本驱动包（替代装不上的官方驱动）→ 官方 CPS 全功能可用。已实测 **PD780 完整读频**:「读频成功」→ 数据树完整加载 → 码板保存,全程 **≤20 秒**;写频/写参数与读频共用同一驱动通路（回归测试欢迎反馈） |
-| macOS 直连（附加,实验性） | `tools/hp780_tool.py` 经 libusb 从 macOS **不装 Windows 也能读回电台镜像**（已实测 PD780,~95KB）。用途:**读频备份**与协议研究/验证。⚠️ 读回的是电台传输态数据,目前**不能直接编辑**;产出官方存档格式（可编辑码板）在路线图上,欢迎贡献 |
+在 ARM64 虚拟机里安装本驱动包（替代装不上的官方驱动）→ **官方 CPS 全功能可用**:已实测
+**PD780 完整读频**（「读频成功」→ 数据树完整加载 → 码板保存,全程 **≤20 秒**）;写频/
+写参数与读频共用同一驱动通路（回归测试欢迎反馈）。
 
 **适用设备**:使用海能达 USB 写频线（**VID_238B & PID_0A11**,即 HP780 写频线）的 DMR
 对讲机与终端（手台/车台/终端）。已在 **PD780** 完整实测;同一写频线、同一协议族的其它机型
@@ -27,9 +26,8 @@ and cannot install into ARM64 Windows, so the CPS never sees the programming cab
 project provides an ARM64-native KMDF driver that takes its place, so the **official CPS
 works fully on Windows on ARM**: reads *and* programs Hytera DMR radios (handhelds &
 terminals) using the Hytera USB programming cable (VID_238B & PID_0A11). Verified end-to-end
-with PD780 (full radio read in under 20 s). Also includes an experimental macOS
-direct-connect tool for raw-image backup and protocol study (not a codeplug editor).
-Independent interoperability project; no Hytera or MCCI code or binaries included.
+with PD780 (full radio read in under 20 s). Independent interoperability project; no
+Hytera or MCCI code or binaries included.
 
 ## 当前状态 (2026-09-13) —— ★PD780 读频全通 + 调速收官★
 
@@ -56,7 +54,6 @@ CPS 对 PD780 的**完整读频 ≤20 秒**跑通:「读频成功！」→ 数�
   - 安装到 `BuildTools\MSBuild\Microsoft\VC\v170\Platforms\<Arch>\` 对应位置
 - `protocol/` —— 写频协议文档(基于实测会话整理:帧格式/校验/读频流程/写参数)
   - `HP780写频协议规范.md` 为正式整理稿;`hytera-protocol.json` = 参考会话帧记录
-- `tools/` —— 直连读取工具(macOS libusb `hp780_tool.py` / Windows WinUSB `hp780_winusb.py`;定位:读频备份/协议验证,非码板编辑器)
 - `vm-scripts/` —— 部署与签名脚本(驱动安装、本地测试证书生成/签名)+ 自然使用 watcher
   (`cps-read-fix.ps1`,配登录任务实现零手动干预)
 - `evidence/` —— 按日期的验收存档(截图/驱动环日志/运行日志/测试 payload/结论 README)
