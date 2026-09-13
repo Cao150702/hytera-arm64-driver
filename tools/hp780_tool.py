@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""HP780 写频线工具 — macOS 直连 (libusb)
+"""HP780 写频线工具 — 直连读取 (macOS: libusb / Windows: WinUSB)
 
 用法:
   python3 hp780_tool.py read -o radio.bin          # 读频,保存码片镜像 (95604B)
@@ -64,15 +64,11 @@ END_FRAME = '7e010000201000000014f40f02c6010100006a03'
 
 
 class Radio:
-    def __init__(self, com_port=None):
+    def __init__(self):
         self.buf = b''
         self.transport = None
         self._winusb = None
-        self._serial = None
-        if com_port:
-            import serial
-            self._serial = serial.Serial(com_port, 19200, timeout=1)
-        elif sys.platform == 'win32':
+        if sys.platform == 'win32':
             try:
                 from hp780_winusb import make_winusb_device
                 self._winusb = make_winusb_device(VID, PID)
@@ -94,14 +90,12 @@ class Radio:
                 _usbutil.claim_interface(self.dev, 2)
             except Exception:
                 pass
-        if self._winusb is None and not hasattr(self, 'dev') and self._serial is None:
+        if self._winusb is None and not hasattr(self, 'dev'):
             raise RuntimeError('设备打开失败。检查电台是否开机、线是否插好。')
 
     def _write(self, data):
         if self._winusb is not None:
             return self._winusb.write(data, timeout_ms=2000)
-        if self._serial is not None:
-            return self._serial.write(data)
         return self.dev.write(0x04, data, timeout=2000)
 
     def _read(self, size, timeout_ms):
@@ -110,10 +104,6 @@ class Radio:
                 return self._winusb.read(size, timeout_ms=timeout_ms)
             except TimeoutError:
                 return None
-        if self._serial is not None:
-            self._serial.timeout = timeout_ms / 1000.0
-            r = self._serial.read(max(1, min(size, 512)))
-            return r if r else None
         try:
             return bytes(self.dev.read(0x84, size, timeout=timeout_ms))
         except Exception:
@@ -256,11 +246,8 @@ def main():
         print(__doc__)
         sys.exit(1)
     cmd = sys.argv[1]
-    com_port = None
-    if '--com' in sys.argv:
-        com_port = sys.argv[sys.argv.index('--com') + 1]
     try:
-        r = Radio(com_port)
+        r = Radio()
     except RuntimeError as e:
         print(str(e), file=sys.stderr)
         sys.exit(1)
@@ -279,7 +266,7 @@ def main():
         else:
             sys.exit(1)
     elif cmd == 'write-param':
-        args = [a for a in sys.argv[2:] if a != '--com' and (com_port is None or a != com_port)]
+        args = sys.argv[2:]
         if len(args) < 2:
             print('用法: hp780_tool.py write-param ID VALUE', file=sys.stderr)
             sys.exit(1)
