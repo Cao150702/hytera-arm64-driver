@@ -51,7 +51,7 @@ v90 加它的动机是防"应答抢在 CPS 建立等待之前到达"的竞态，
 
 ## 复现
 
-1. 构建/部署：`vm-scripts/run68.cmd` 同款流程——源码送入构建目录，
+1. 构建/部署：`vm-scripts/deploy.cmd` 同款流程——源码送入构建目录，
    INF DriverVer 递增，MSBuild ARM64 Rebuild，`v22deploy.cmd`
    （inf2cat `/os:10_GE_ARM64` + signtool `/sm /sha1 <leaf>` + pnputil remove/add/scan）。
 2. 读频测试：本目录的 `p68.ps1`（干净无调试工具；watcher 自动选择端口栈 class 0x14；
