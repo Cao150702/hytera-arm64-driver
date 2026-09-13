@@ -97,4 +97,6 @@ you legally own or are authorized to operate.
 
 ## 许可 / License
 
-本仓库原创内容采用 Apache License 2.0(见 `LICENSE`)。
+本仓库原创内容采用 **GNU GPL v3.0(或更新版本)**(见 `LICENSE`)——你可以自由使用、修改、
+再分发;但**分发修改版时必须同样以 GPL 开源并保留署名**,不得闭源拿走。
+这也是对本项目最直接的保护:想闭源整合?侵权,可投诉下架。
