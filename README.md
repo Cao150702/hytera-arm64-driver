@@ -83,7 +83,7 @@ signtool sign /sm /sha1 <leaf-thumbprint> /v /fd sha256 /ph hyterabulk.cat
 - 本项目为个人互操作性(interoperability)项目,目的是让合法持有的设备在官方 CPS 中正常工作。
 - 与海能达通信股份有限公司(Hytera Communications)及 MCCI Corporation 无任何隶属、赞助或背书关系。
 - "Hytera"、"MCCI" 等名称与商标归各自权利人所有,此处仅用于描述兼容性。
-- 本仓库不包含、也不分发海能达或 MCCI 的任何软件、代码或二进制文件。
+- 本仓库不包含、也不分发海能达或 MCCI 的任何软件、代码或二进制文件;仓库内全部代码均为本项目作者编写。
 - 请仅对您合法拥有或获授权操作的设备使用本项目的工具与脚本。
 
 This is an independent interoperability project, not affiliated with, endorsed by, or

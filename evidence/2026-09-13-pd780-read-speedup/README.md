@@ -54,8 +54,8 @@ v90 加它的动机是防"应答抢在 CPS 建立等待之前到达"的竞态，
 1. 构建/部署：`vm-scripts/deploy.cmd` 同款流程——源码送入构建目录，
    INF DriverVer 递增，MSBuild ARM64 Rebuild，`v22deploy.cmd`
    （inf2cat `/os:10_GE_ARM64` + signtool `/sm /sha1 <leaf>` + pnputil remove/add/scan）。
-2. 读频测试：本目录的 `p68.ps1`（干净无调试工具；watcher 自动选择端口栈 class 0x14；
-   progress 采样 + 多点环 dump + 自动点确定载树）。辅助点击：本目录的 `click68.ps1`。
+2. 读频测试：干净虚拟机里跑完整自然流程——安装驱动 → 官方 CPS → 读频 → 自动点确定载树;
+   全程日志见 `p68.txt`。
 3. 驱动环 dump：`C:\dbg\dbglog.exe`（打开 `\\.\usbbulk`，IOCTL 0x220000 读 32KB 环；
    0x220001 清环）。
 
