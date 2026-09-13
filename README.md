@@ -89,8 +89,9 @@ signtool sign /sm /sha1 <leaf-thumbprint> /v /fd sha256 /ph hyterabulk.cat
 This is an independent interoperability project, not affiliated with, endorsed by, or
 sponsored by Hytera Communications or MCCI Corporation. All trademarks belong to their
 respective owners and are used only to describe compatibility. No Hytera or MCCI software,
-code, or binaries are included or redistributed in this repository. Use only with devices
-you legally own or are authorized to operate.
+code, or binaries are included or redistributed in this repository; all code in this
+repository is original work by the project author. Use only with devices you legally own
+or are authorized to operate.
 
 ## 许可 / License
 
