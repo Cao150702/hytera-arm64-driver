@@ -4,24 +4,27 @@
 
 用 **Apple 芯片的 Mac**,想读写自己的**海能达对讲机**（手台/终端）,于是装了
 **Parallels Desktop（PD）或 VMware Fusion** 跑 Windows 11 **ARM64** 虚拟机,再装官方 CPS
-（客户端编程软件）——结果 CPS **死活识别不到写频线**:官方写频线驱动只有 x86/x64 版,
-装不进 ARM64 Windows;这台 Mac 上也没有别的机器能插这根线。
+（客户端编程软件）——**装 CPS 的时候它自带的写频线驱动就直接安装失败**（官方驱动只有
+x86/x64 版,在 ARM64 Windows 上装不了）,CPS 里自然也**识别不到写频线**;
+这台 Mac 上也没有别的机器能插这根线。
 
-**本项目就是为这个场景做的**:提供 ARM64 原生 KMDF 驱动,让**官方 CPS 在 ARM64 Windows
-虚拟机（以及任何 Windows on ARM 设备）里正常识别写频线,读取和写入海能达对讲机**。
+**本项目就是为这个场景做的**:提供 ARM64 原生 KMDF 驱动,**顶替装不上的官方驱动**,
+让**官方 CPS 在 ARM64 Windows 虚拟机（以及任何 Windows on ARM 设备）里正常工作,
+读取和写入海能达对讲机**。
 
 | 路径 | 说明 |
 |---|---|
-| **官方 CPS（主线,推荐）** | 在 ARM64 虚拟机里安装本驱动包 → 官方 CPS 全功能可用。已实测 **PD780 完整读频**:「读频成功」→ 数据树完整加载 → 码板保存,全程 **≤20 秒**;写频/写参数与读频共用同一驱动通路（回归测试欢迎反馈） |
+| **官方 CPS（主线,推荐）** | 在 ARM64 虚拟机里安装本驱动包（替代装不上的官方驱动）→ 官方 CPS 全功能可用。已实测 **PD780 完整读频**:「读频成功」→ 数据树完整加载 → 码板保存,全程 **≤20 秒**;写频/写参数与读频共用同一驱动通路（回归测试欢迎反馈） |
 | macOS 直连（附加,实验性） | `tools/hp780_tool.py` 经 libusb 从 macOS **不装 Windows 也能读回电台镜像**（已实测 PD780,~95KB）。用途:**读频备份**与协议研究/验证。⚠️ 读回的是电台传输态数据,目前**不能直接编辑**;产出官方存档格式（可编辑码板）在路线图上,欢迎贡献 |
 
 **适用设备**:使用海能达 USB 写频线（**VID_238B & PID_0A11**,即 HP780 写频线）的 DMR
 对讲机与终端（手台/车台/终端）。已在 **PD780** 完整实测;同一写频线、同一协议族的其它机型
 按相同方式使用,欢迎在 Issues 反馈你的机型与结果。
 
-**English**: On an Apple Silicon Mac running Parallels / VMware Fusion, the official Hytera
-CPS cannot see the programming cable — its driver ships for x86/x64 only and won't install
-into ARM64 Windows. This project provides an ARM64-native KMDF driver so the **official CPS
+**English**: On an Apple Silicon Mac running Parallels / VMware Fusion, installing the
+official Hytera CPS fails at the bundled driver step — that driver ships for x86/x64 only
+and cannot install into ARM64 Windows, so the CPS never sees the programming cable. This
+project provides an ARM64-native KMDF driver that takes its place, so the **official CPS
 works fully on Windows on ARM**: reads *and* programs Hytera DMR radios (handhelds &
 terminals) using the Hytera USB programming cable (VID_238B & PID_0A11). Verified end-to-end
 with PD780 (full radio read in under 20 s). Also includes an experimental macOS
