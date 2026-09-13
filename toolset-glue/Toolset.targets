@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildThisFileDirectory)ImportBefore\*.targets" Condition="Exists('$(MSBuildThisFileDirectory)ImportBefore')" />
+
+  <Import Project="$(MSBuildThisFileDirectory)BuildAsX.ARM64.targets" Condition="Exists('$(MSBuildThisFileDirectory)BuildAsX.ARM64.targets')"/>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.BuildAsX.Common.targets" Condition="Exists('$(VCTargetsPath)\Microsoft.Cpp.BuildAsX.Common.targets')"/>
+
+  <Import Project="$(WDKContentRoot)build\$(WDKBuildFolder)\WindowsDriver.Common.targets"/>
+  <Import Project="$(WDKContentRoot)build\$(WDKBuildFolder)\WindowsDriver.arm64.targets" Condition="Exists('$(WDKContentRoot)build\$(WDKBuildFolder)\WindowsDriver.arm64.targets')"/>
+  <Import Project="$(WDKContentRoot)build\$(WDKBuildFolder)\$(Platform)\ImportAfter\*.targets"
+          Condition="Exists('$(WDKContentRoot)build\$(WDKBuildFolder)\$(Platform)\ImportAfter')"/>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.CppCommon.targets" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.WindowsSDK.targets" />
+
+  <Import Project="$(MSBuildThisFileDirectory)ImportAfter\*.targets" Condition="Exists('$(MSBuildThisFileDirectory)ImportAfter')" />
+</Project>

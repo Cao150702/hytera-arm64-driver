@@ -1,0 +1,257 @@
+
+************* Preparing the environment for Debugger Extensions Gallery repositories **************
+   ExtensionRepository : Implicit
+   UseExperimentalFeatureForNugetShare : true
+   AllowNugetExeUpdate : true
+   NonInteractiveNuget : true
+   AllowNugetMSCredentialProviderInstall : true
+   AllowParallelInitializationOfLocalRepositories : true
+
+   EnableRedirectToV8JsProvider : false
+
+   -- Configuring repositories
+      ----> Repository : LocalInstalled, Enabled: true
+      ----> Repository : UserExtensions, Enabled: true
+
+>>>>>>>>>>>>> Preparing the environment for Debugger Extensions Gallery repositories completed, duration 0.000 seconds
+
+************* Waiting for Debugger Extensions Gallery to Initialize **************
+
+>>>>>>>>>>>>> Waiting for Debugger Extensions Gallery to Initialize completed, duration 0.016 seconds
+   ----> Repository : UserExtensions, Enabled: true, Packages count: 0
+   ----> Repository : LocalInstalled, Enabled: true, Packages count: 27
+
+Microsoft (R) Windows Debugger Version 10.0.26100.6584 ARM64
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+
+Loading Dump File [C:\Windows\Minidump\090926-4453-01.dmp]
+Mini Kernel Dump File: Only registers and stack trace are available
+
+Symbol search path is: srv*
+Executable search path is: 
+Windows 10 Kernel Version 26100 MP (4 procs) Free ARM 64-bit (AArch64)
+Product: WinNt, suite: TerminalServer SingleUserTS
+Edition build lab: 26100.1.arm64fre.ge_release.240331-1435
+Kernel base = 0xfffff803`13a00000 PsLoadedModuleList = 0xfffff803`147682c0
+Debug session time: Wed Sep  9 22:51:01.256 2026 (UTC + 8:00)
+System Uptime: 0 days 1:48:04.448
+Loading Kernel Symbols
+...............................................................
+................................................................
+..........................................
+Loading User Symbols
+
+Loading unloaded module list
+............................................
+For analysis of this file, run !analyze -v
+0: kd> cdb: Reading initial command '$$<C:\hp780\cdb-analyze.txt'
+0: kd> .sympath srv*C:\sym*https://msdl.microsoft.com/download/symbols
+Symbol search path is: srv*C:\sym*https://msdl.microsoft.com/download/symbols
+Expanded Symbol search path is: srv*c:\sym*https://msdl.microsoft.com/download/symbols
+
+************* Path validation summary **************
+Response                         Time (ms)     Location
+Deferred                                       srv*C:\sym*https://msdl.microsoft.com/download/symbols
+0: kd> !analyze -v
+*******************************************************************************
+*                                                                             *
+*                        Bugcheck Analysis                                    *
+*                                                                             *
+*******************************************************************************
+
+WDF_VIOLATION (10d)
+The Kernel-Mode Driver Framework was notified that Windows detected an error
+in a framework-based driver. In general, the dump file will yield additional
+information about the driver that caused this BugCheck.
+Arguments:
+Arg1: 0000000000000007, A driver attempted to delete a framework object incorrectly
+	by calling WdfObjectDereference to delete a handle instead
+	of calling WdfObjectDelete.
+Arg2: 00001afd67fd2b88, Reserved.
+Arg3: ffffe5029802d470, Reserved.
+Arg4: ffffe502923c8870, Reserved.
+
+Debugging Details:
+------------------
+
+
+KEY_VALUES_STRING: 1
+
+    Key  : Analysis.CPU.mSec
+    Value: 1718
+
+    Key  : Analysis.Elapsed.mSec
+    Value: 16718
+
+    Key  : Analysis.IO.Other.Mb
+    Value: 1
+
+    Key  : Analysis.IO.Read.Mb
+    Value: 0
+
+    Key  : Analysis.IO.Write.Mb
+    Value: 2
+
+    Key  : Analysis.Init.CPU.mSec
+    Value: 218
+
+    Key  : Analysis.Init.Elapsed.mSec
+    Value: 371
+
+    Key  : Analysis.Memory.CommitPeak.Mb
+    Value: 99
+
+    Key  : Bugcheck.Code.KiBugCheckData
+    Value: 0x10d
+
+    Key  : Bugcheck.Code.LegacyAPI
+    Value: 0x10d
+
+    Key  : Failure.Bucket
+    Value: 0x10D_7_USBXHCI!Bulk_ProcessTransferEventWithED1
+
+    Key  : Failure.Hash
+    Value: {5d1b9729-36e0-7cab-371a-433b3f3ab805}
+
+    Key  : Hypervisor.RootFlags.AccessStats
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.CrashdumpEnlightened
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.CreateVirtualProcessor
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.DisableHyperthreading
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.HostTimelineSync
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.HypervisorDebuggingEnabled
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.IsHyperV
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.LivedumpEnlightened
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.MapDeviceInterrupt
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.MceEnlightened
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.Nested
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.StartLogicalProcessor
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.Value
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.ValueHex
+    Value: 0
+
+    Key  : WER.OS.Branch
+    Value: ge_release
+
+    Key  : WER.OS.Version
+    Value: 10.0.26100.1
+
+
+BUGCHECK_CODE:  10d
+
+BUGCHECK_P1: 7
+
+BUGCHECK_P2: 1afd67fd2b88
+
+BUGCHECK_P3: ffffe5029802d470
+
+BUGCHECK_P4: ffffe502923c8870
+
+FILE_IN_CAB:  090926-4453-01.dmp
+
+BLACKBOXBSD: 1 (!blackboxbsd)
+
+
+BLACKBOXNTFS: 1 (!blackboxntfs)
+
+
+BLACKBOXPNP: 1 (!blackboxpnp)
+
+
+BLACKBOXWINLOGON: 1
+
+CUSTOMER_CRASH_COUNT:  1
+
+PROCESS_NAME:  System
+
+STACK_TEXT:  
+fffff803`0f247d10 fffff803`13c5e234     : fffff803`0f247d00 fffff803`13c70328 fffff803`0f248330 fffff803`13c5e234 : nt!KeBugCheck2+0x330
+fffff803`0f248330 fffff803`0dc0f82c     : fffff803`0f248340 fffff803`0dc0f82c fffff803`0f248360 fffff803`0dbba428 : nt!KeBugCheckEx+0x14
+fffff803`0f248340 fffff803`0dbba428     : fffff803`0f248360 fffff803`0dbba428 00000000`00000000 00000000`c0000016 : Wdf01000!FxVerifierBugCheckWorker+0x2c
+fffff803`0f248350 fffff803`0dbb466c     : 00000000`00000000 00000000`c0000016 fffff803`0f248380 fffff803`0dbb466c : Wdf01000!FxRequestBase::~FxRequestBase+0xe8
+fffff803`0f248380 fffff803`0dba3404     : fffff803`0f2483a0 fffff803`0dba3404 ffffe502`9802d470 00000000`00000000 : Wdf01000!FxRequestFromLookaside::`scalar deleting destructor'+0x1c
+fffff803`0f2483a0 fffff803`0dbb63cc     : fffff803`0f2483b0 fffff803`0dbb63cc fffff803`0f248400 fffff803`0dbca704 : Wdf01000!FxObject::SelfDestruct+0x34
+fffff803`0f2483b0 fffff803`0dbca704     : fffff803`0f248400 fffff803`0dbca704 ffffe502`9802d470 ffffe502`8ed13df0 : Wdf01000!FxRequest::Release+0xbc
+fffff803`0f248400 fffff803`13c49ff4     : fffff803`0f248450 fffff803`13c49ff4 ffffe502`90419d02 00000000`00000000 : Wdf01000!FxIoTarget::_RequestCompletionRoutine+0x2b4
+fffff803`0f248450 fffff803`13c4a414     : fffff803`0f248490 fffff803`13c4a414 ffffe502`9214a4d3 00000000`00000048 : nt!IopUnloadSafeCompletion+0x64
+fffff803`0f248490 fffff803`0dbb48d4     : fffff803`0f248520 fffff803`0dbb48d4 fffff803`0f248400 ffffe502`9214a010 : nt!IopfCompleteRequest+0x1e4
+fffff803`0f248510 fffff803`0dbae470     : fffff803`014c0194 ffffe502`90daa4e0 fffff803`0f2485a0 fffff803`0dbae470 : Wdf01000!FxRequest::CompleteInternal+0xf4
+fffff803`0f248590 fffff803`108c97e0     : ffffe502`9027b4f0 fffff803`0f248600 fffff803`0f248620 fffff803`108c97e0 : Wdf01000!imp_WdfRequestComplete+0x90
+fffff803`0f2485f0 fffff803`108c7cc8     : 00001afd`70118d98 ffffe502`00000000 ffffe502`0000000c fffff803`00000001 : USBXHCI!Bulk_ProcessTransferEventWithED1+0x7f0
+fffff803`0f248690 fffff803`108b5e38     : fffff803`0f2486b0 fffff803`108b5e38 00000000`00000004 00000000`00000000 : USBXHCI!Bulk_EP_TransferEventHandler+0x18
+fffff803`0f2486a0 fffff803`108b794c     : 00000000`00000004 00000000`00000000 fffff803`0f2487a0 fffff803`108b794c : USBXHCI!Endpoint_TransferEventHandler+0x138
+fffff803`0f248700 fffff803`0dbe6dc8     : fffff803`00000001 ffffe502`8fee7492 00000000`0000000c 00000000`00000001 : USBXHCI!Interrupter_DeferredWorkProcessor+0x7ac
+fffff803`0f248800 fffff803`13c9ff0c     : fffff803`0f248a20 fffff803`13c9ff0c 00000000`000043f8 00000000`000043f8 : Wdf01000!FxInterrupt::_InterruptDpcThunk+0x98
+fffff803`0f248840 fffff803`13ca2660     : 0000000f`00007396 00000000`000043f8 fffff803`0dbe6d30 fffff803`0a420980 : nt!KiExecuteAllDpcs+0x694
+fffff803`0f248a80 fffff803`13f0689c     : 5600005b`60000144 fffff803`0f248d60 00000000`00000001 fffff803`14814a80 : nt!KiRetireDpcList+0x470
+fffff803`0f248d60 00000000`00000000     : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : nt!KiIdleLoop+0x5c
+
+
+SYMBOL_NAME:  USBXHCI!Bulk_ProcessTransferEventWithED1+7f0
+
+MODULE_NAME: USBXHCI
+
+IMAGE_NAME:  USBXHCI.SYS
+
+IMAGE_VERSION:  10.0.26100.4202
+
+STACK_COMMAND:  .cxr; .ecxr ; kb
+
+BUCKET_ID_FUNC_OFFSET:  7f0
+
+FAILURE_BUCKET_ID:  0x10D_7_USBXHCI!Bulk_ProcessTransferEventWithED1
+
+OS_VERSION:  10.0.26100.1
+
+BUILDLAB_STR:  ge_release
+
+OSPLATFORM_TYPE:  arm64
+
+OSNAME:  Windows 10
+
+FAILURE_ID_HASH:  {5d1b9729-36e0-7cab-371a-433b3f3ab805}
+
+Followup:     MachineOwner
+---------
+
+0: kd> q
+quit:
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\arm64\Visualizers\atlmfc.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\arm64\Visualizers\ObjectiveC.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\arm64\Visualizers\concurrency.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\arm64\Visualizers\cpp_rest.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\arm64\Visualizers\Kernel.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\arm64\Visualizers\stl.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\arm64\Visualizers\Windows.Data.Json.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\arm64\Visualizers\Windows.Devices.Geolocation.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\arm64\Visualizers\Windows.Devices.Sensors.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\arm64\Visualizers\Windows.Media.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\arm64\Visualizers\windows.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\arm64\Visualizers\winrt.natvis'
+NatVis script unloaded from 'C:\Program Files (x86)\Windows Kits\10\Debuggers\arm64\Visualizers\Usb4Kd.natvis'

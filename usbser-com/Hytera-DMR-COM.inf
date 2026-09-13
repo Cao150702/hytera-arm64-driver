@@ -1,0 +1,47 @@
+;;===========================================================================
+;; Hytera-DMR-COM.inf (v9)
+;; Hytera DMR programming cable (VID_238B PID_0A11) -> inbox usbser.sys COM port
+;; ARM64 native. usbser added as function driver (SPSVCINST_ASSOCSERVICE).
+;;===========================================================================
+
+[Version]
+Signature   = "$Windows NT$"
+Class       = Ports
+ClassGuid   = {4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider    = %Provider%
+DriverVer   = 09/08/2026,1.0.0.0
+CatalogFile = Hytera-DMR-COM.cat
+
+[Manufacturer]
+%Provider% = Digital, NTarm64
+
+[Digital.NTarm64]
+%Digital.Comm.Desc% = Digital.Install, USB\VID_238b&PID_0a11
+%Digital.Comm.Desc% = Digital.Install, USB\VID_238b&PID_0a11&REV_0000
+
+[Digital.Install.NT]
+CopyFiles = Digital.CopyFiles
+
+[Digital.Install.NT.Services]
+AddService = usbser, 0x00000002, Digital.AddService
+
+[Digital.Install.NT.HW]
+AddReg = Digital.Install.NT.HW.AddReg
+
+[Digital.Install.NT.HW.AddReg]
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Digital.CopyFiles]
+usbser.sys,,,0x100
+
+[Digital.AddService]
+DisplayName   = %SvcDesc%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\usbser.sys
+
+[Strings]
+Provider = "Hytera"
+Digital.Comm.Desc = "Hytera DMR Radio (COM Port)"
+SvcDesc  = "Hytera DMR Radio USB Serial Driver"

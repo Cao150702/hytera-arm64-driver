@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildThisFileDirectory)ImportBefore\*.props" Condition="Exists('$(MSBuildThisFileDirectory)ImportBefore')" />
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.MSVC.Toolset.ARM64.props"/>
+
+  <PropertyGroup>
+    <IsKernelModeToolset Condition="'$(ConfigurationType)'=='Driver'">true</IsKernelModeToolset>
+    <IsUserModeToolset Condition="'$(ConfigurationType)'!='Driver'">true</IsUserModeToolset>
+    <DriverTargetPlatform Condition="'$(DriverTargetPlatform)'==''">Desktop</DriverTargetPlatform>
+    <WDKContentRoot Condition="'$(WDKContentRoot)'==''">C:\Program Files (x86)\Windows Kits\10\</WDKContentRoot>
+    <WDKBuildFolder Condition="'$(WDKBuildFolder)'==''">$(WindowsTargetPlatformVersion)</WDKBuildFolder>
+    <DDKPlatform Condition="'$(DDKPlatform)'=='' and '$(Platform)'=='ARM64'">arm64</DDKPlatform>
+    <DDKPlatform Condition="'$(DDKPlatform)'=='' and '$(Platform)'=='x64'">x64</DDKPlatform>
+    <DDKPlatform Condition="'$(DDKPlatform)'=='' and '$(Platform)'=='Win32'">x86</DDKPlatform>
+  </PropertyGroup>
+
+  <Import Project="$(WDKContentRoot)build\$(WDKBuildFolder)\WindowsDriver.Default.props"/>
+  <Import Project="$(WDKContentRoot)DesignTime\CommonConfiguration\Neutral\WDK\$(WDKBuildFolder)\WDK.props"
+          Condition="Exists('$(WDKContentRoot)DesignTime\CommonConfiguration\Neutral\WDK\$(WDKBuildFolder)\WDK.props')"/>
+  <Import Project="$(WDKContentRoot)build\$(WDKBuildFolder)\WindowsDriver.Common.props"/>
+  <Import Project="$(WDKContentRoot)build\$(WDKBuildFolder)\WindowsDriver.arm64.props"/>
+  <Import Project="$(WDKContentRoot)build\$(WDKBuildFolder)\$(Platform)\ImportAfter\*.props"
+          Condition="Exists('$(WDKContentRoot)build\$(WDKBuildFolder)\$(Platform)\ImportAfter')"/>
+
+  <Import Project="$(MSBuildThisFileDirectory)ImportAfter\*.props" Condition="Exists('$(MSBuildThisFileDirectory)ImportAfter')" />
+
+  <Import Project="$(_PlatformFolder)Platform.Common.props"/>
+</Project>

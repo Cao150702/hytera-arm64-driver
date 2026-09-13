@@ -1,0 +1,3 @@
+.sympath srv*C:\sym*https://msdl.microsoft.com/download/symbols
+!analyze -v
+q

@@ -1,0 +1,21 @@
+# Build outputs
+*.tlog
+*.pdb
+*.sys
+*.cat
+*.recipe
+*.FileListAbsolute.txt
+*.obj
+*.iobj
+*.ipdb
+# Signing material (generate locally, never commit)
+*.pfx
+*.pvk
+*.key
+*.cer
+# Python
+__pycache__/
+*.pyc
+# Local scratch
+.staging/
+.DS_Store

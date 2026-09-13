@@ -1,0 +1,12 @@
+probe start 0
+opened 0
+wrote 0
+read total 107
+7e 04 00 fd 10 20 00 00 00 0c 70 d2 7e 04 00 fd 10 20 00 00 00 0c 70 d2 7e 04 00 00 10 20 00 01 00 3b 05 cd 02 05 82 28 00 00 00 00 00 00 00 00 00 01 db 07 02 18 50 44 37 38 54 30 30 30 30 30  0
+saved 107
+done 0
+22:23:46 == probe2 start == 0
+22:23:46 opened 0
+22:23:46 write done, bytes 20
+22:23:58 read total 98322
+22:23:58 == probe2 done == 98322

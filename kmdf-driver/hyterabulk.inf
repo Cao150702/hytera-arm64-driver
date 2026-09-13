@@ -1,0 +1,53 @@
+;;===========================================================================
+;; hyterabulk.inf - ARM64 KMDF driver presenting "USB Bulk Device" to CPS
+;;===========================================================================
+
+[Version]
+Signature   = "$Windows NT$"
+Class       = USB
+ClassGuid   = {36FC9E60-C465-11CF-8056-444553540000}
+Provider    = %Mfg%
+DriverVer   = 09/01/2026,1.0.1.15
+CatalogFile = hyterabulk.cat
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = %DiskName%
+
+[SourceDisksFiles]
+hyterabulk.sys = 1
+
+[Manufacturer]
+%Mfg% = Hytera, NTarm64
+
+[Hytera.NTarm64]
+%DeviceDesc% = Bulk_Install, USB\VID_238B&PID_0A11
+%DeviceDesc% = Bulk_Install, USB\VID_238B&PID_0A11&REV_0000
+
+[Bulk_Install.NT]
+CopyFiles = Bulk_CopyFiles
+
+[Bulk_Install.NT.Services]
+AddService = hyterabulk, 0x00000002, Bulk_Service
+
+[Bulk_Service]
+DisplayName   = %SvcDesc%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\hyterabulk.sys
+
+[Bulk_CopyFiles]
+hyterabulk.sys
+
+[Strings]
+Mfg = "Hytera"
+DeviceDesc = "USB Bulk Device"
+SvcDesc = "Hytera USB Bulk Device"
+DiskName = "Hytera DMR Driver Disk"
+
+
+
+
